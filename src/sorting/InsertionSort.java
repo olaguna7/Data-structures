@@ -21,10 +21,7 @@ public class InsertionSort {
                     int temp = arr[j];
                     arr[j] = arr[j - 1];
                     arr[j - 1] = temp;
-                }
-
-                // If the j-th element is greater than j-1 element, break the loop
-                if (arr[j] > arr[j - 1]) {
+                } else { // If the j-th element is greater or equal than j-1 element, break the loop
                     j = -1;
                 }
             }
