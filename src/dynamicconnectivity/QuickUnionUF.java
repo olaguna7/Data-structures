@@ -1,7 +1,7 @@
 package dynamicconnectivity;
 
 public class QuickUnionUF {
-    private int id[];
+    private int[] id;
 
     /* Set id of each object to itself (N array access) */
     public QuickUnionUF(int N) {
@@ -31,6 +31,4 @@ public class QuickUnionUF {
         int j = root(q);
         id[i] = j;
     }
-
-
 }
