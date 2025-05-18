@@ -26,4 +26,20 @@ public class Scoreboard {
             board[j] = e;
         }
     }
+
+    /** Remove and return the high score at index i. */
+    public GameEntry remove(int i) throws IndexOutOfBoundsException {
+        if (i < 0 || i >= numEntries) {
+            throw new IndexOutOfBoundsException("Invalid index: " + i);
+        }
+
+        GameEntry temp = board[i];                  // Save the object to be removed
+        for (int j = i; j < numEntries - 1; j++) {  // Count up from i (not down=
+            board[j] = board[j + 1];                // move one cell to the left
+        }
+
+        board[numEntries - 1] = null;           // null out the old last score
+        numEntries--;
+        return temp;                            // return the removed object
+    }
 }
