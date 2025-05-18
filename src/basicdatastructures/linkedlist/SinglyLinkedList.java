@@ -1,10 +1,9 @@
 package basicdatastructures.linkedlist;
 
 public class SinglyLinkedList<E> {
-    // Nested Node class
-    private static class Node<E> {
-        private E element;      // Reference to the element stored at this node
-        private Node<E> next;   // Reference to the subsequent node in the list
+    private class Node<E> {
+        private E element;
+        private Node<E> next;
 
         public Node(E element, Node<E> next) {
             this.element = element;
@@ -22,19 +21,15 @@ public class SinglyLinkedList<E> {
         public void setNext(Node<E> next) {
             this.next = next;
         }
-    } // End of nested Node class
-
-    // Instance variables of the SinglyLinkedList
-    private Node<E> head = null;    // head node of the list (or null if empty)
-    private Node<E> tail = null;    // last node of the list (or null if empty)
-    private int size = 0;
-
-    public SinglyLinkedList() {
-        // constructs an initially empty list
     }
 
-    // access methods
-    public int size() {
+    private Node<E> head = null;
+    private Node<E> tail = null;
+    private int size = 0;
+
+    public SinglyLinkedList() {}
+
+    public int getSize() {
         return size;
     }
 
@@ -42,54 +37,48 @@ public class SinglyLinkedList<E> {
         return size == 0;
     }
 
-    // Returns (but does not remove) the first element
-    public E first() {
+    public E getFirst() {
         if (isEmpty()) {
             return null;
         }
         return head.getElement();
     }
 
-    // Returns (but does not remove) the last element
-    public E last() {
+    public E getLast() {
         if (isEmpty()) {
             return null;
         }
         return tail.getElement();
     }
 
-    // Update methods
-    // Adds element to the front of the list
     public void addFirst(E element) {
-        head = new Node<>(element, head);   // Create and link a new node
-        if (size == 0) {
+        head = new Node<>(element, head);
+        if (isEmpty()) {
             tail = head;
         }
         size++;
     }
 
-    // Adds element to the end of the list
     public void addLast(E element) {
-        Node<E> newest = new Node<>(element, null);     // Node will eventually be the tail
+        Node<E> newTail = new Node<>(element, null);
         if (isEmpty()) {
-            tail = newest;                  // Special case: previously empty list
+            head = newTail;
         } else {
-            tail.setNext(newest);           // new node after existing tail
+            tail.setNext(newTail);
         }
-        tail = newest;                      // new node becomes the tail
+        tail = newTail;
         size++;
     }
 
-    // Removes and returns the first element
     public E removeFirst() {
-        if (isEmpty()) {    // nothing to remove
+        if (isEmpty()) {
             return null;
         }
         E answer = head.getElement();
-        head = head.getNext();  // will become null if list had only one node
+        head = head.getNext();
         size--;
-        if (size == 0) {
-            tail = null;    // special case as list is now empty
+        if (size == 0){
+            tail = null;
         }
         return answer;
     }
